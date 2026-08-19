@@ -6,6 +6,8 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Infinity Heights Nosy Be — Private Luxury Villas, Madagascar</title>
 <meta content="Infinity Heights Nosy Be. Twelve private villas between hillside and ocean, overlooking the Baie d'Ampasindava, Madagascar." name="description"/>
+<link rel="icon" type="image/png" sizes="32x32" href="infinity-heights-favicon.png?v=2"/>
+<link rel="shortcut icon" type="image/png" href="infinity-heights-favicon.png?v=2"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&amp;family=Jost:wght@300;400;500&amp;family=Parisienne&amp;display=swap" rel="stylesheet"/>
@@ -835,7 +837,7 @@
 }
 .phone-field-wrap > input[type="tel"]::placeholder{opacity:.45;}
 @media(max-width:700px){
-  .phone-country-picker{flex:0 0 108px;}
+  .phone-country-picker{flex:0 0 112px;}
   .phone-country-trigger{padding:0 8px;font-size:13px;}
   .phone-country-menu{width:290px;max-width:90vw;}
 }
@@ -1194,11 +1196,11 @@
 </div>
 <form action="https://formsubmit.co/ajax/contact@infinityheights.uk" data-no-mail-app="true" class="contact-form reveal reveal-delay-1" id="enquiryForm" method="POST">
 <div class="form-row">
-<label><span data-en="First Name" data-fr="Prénom">First Name</span><input autocomplete="given-name" name="firstName" required="" type="text"/></label>
-<label><span data-en="Last Name" data-fr="Nom">Last Name</span><input autocomplete="family-name" name="lastName" required="" type="text"/></label>
+<label><span data-en="First Name" data-fr="Prénom">First Name</span><input autocomplete="given-name" name="firstName" data-en-placeholder="First Name" data-fr-placeholder="Prénom" placeholder="First Name" required="" type="text"/></label>
+<label><span data-en="Last Name" data-fr="Nom">Last Name</span><input autocomplete="family-name" name="lastName" data-en-placeholder="Last Name" data-fr-placeholder="Nom" placeholder="Last Name" required="" type="text"/></label>
 </div>
 <div class="form-row">
-<label><span data-en="Email" data-fr="E-mail">Email</span><input autocomplete="email" name="email" required="" type="email"/></label>
+<label><span data-en="Email" data-fr="E-mail">Email</span><input autocomplete="email" name="email" data-en-placeholder="Email" data-fr-placeholder="E-mail" placeholder="Email" required="" type="email"/></label>
 <label><span data-en="Phone Number" data-fr="Numéro de téléphone">Phone Number</span><div class="phone-field-wrap">
 <select aria-label="Country calling code" data-en-aria-label="Country calling code" data-fr-aria-label="Indicatif pays" id="phoneCountry">
 <option data-en-name="Afghanistan" data-fr-name="Afghanistan" value="+93">🇦🇫 +93 — Afghanistan</option>
@@ -1419,7 +1421,7 @@
 </div>
 <label><span data-en="Your Message" data-fr="Votre message">Your Message</span><textarea data-en-placeholder="Tell us how we can assist you…" data-fr-placeholder="Dites-nous comment nous pouvons vous aider…" name="message" placeholder="Tell us how we can assist you…" required="" rows="6"></textarea></label>
 <button class="btn filled form-submit" data-en="Send Enquiry" data-fr="Envoyer la demande" type="submit">Send Enquiry</button>
-<p class="form-note" data-en="Your enquiry will open an email addressed to our team." data-fr="Votre demande sera envoyée directement à notre équipe.">Your enquiry will open an email addressed to our team.</p>
+<p class="form-note" data-en="Your enquiry will be sent directly to our team." data-fr="Votre demande sera envoyée directement à notre équipe.">Your enquiry will be sent directly to our team.</p>
 </form>
 </div>
 </div>
@@ -1575,6 +1577,44 @@
     Object.entries(translations).forEach(([selector,pair])=>{
       document.querySelectorAll(selector).forEach(el=>{ el.innerHTML = (lang === 'fr' ? pair[1] : pair[0]); });
     });
+
+    // Translate every element explicitly marked for EN/FR, including the enquiry form.
+    document.querySelectorAll('[data-en],[data-fr]').forEach(el=>{
+      const value = lang === 'fr' ? el.getAttribute('data-fr') : el.getAttribute('data-en');
+      if(value !== null) el.innerHTML = value;
+    });
+    document.querySelectorAll('[data-en-placeholder],[data-fr-placeholder]').forEach(el=>{
+      const value = lang === 'fr' ? el.getAttribute('data-fr-placeholder') : el.getAttribute('data-en-placeholder');
+      if(value !== null) el.setAttribute('placeholder', value);
+    });
+    document.querySelectorAll('[data-en-aria-label],[data-fr-aria-label]').forEach(el=>{
+      const value = lang === 'fr' ? el.getAttribute('data-fr-aria-label') : el.getAttribute('data-en-aria-label');
+      if(value !== null) el.setAttribute('aria-label', value);
+    });
+    document.querySelectorAll('[data-en-alt],[data-fr-alt]').forEach(el=>{
+      const value = lang === 'fr' ? el.getAttribute('data-fr-alt') : el.getAttribute('data-en-alt');
+      if(value !== null) el.setAttribute('alt', value);
+    });
+
+    document.querySelectorAll('[data-lang]').forEach(btn=>btn.classList.toggle('active',btn.dataset.lang===lang));
+    document.documentElement.lang=lang;
+    document.title = lang === 'fr'
+      ? 'Infinity Heights Nosy Be — Villas privées de luxe, Madagascar'
+      : 'Infinity Heights Nosy Be — Private Luxury Villas, Madagascar';
+
+    // Keep the searchable phone-country menu bilingual too.
+    const countrySearch=document.querySelector('.phone-country-search');
+    if(countrySearch){
+      countrySearch.placeholder = lang === 'fr' ? 'Rechercher un pays…' : 'Search country…';
+      countrySearch.setAttribute('aria-label', lang === 'fr' ? 'Rechercher un pays' : 'Search country');
+    }
+    const countryEmpty=document.querySelector('.phone-country-options > div');
+    if(countryEmpty && countryEmpty.textContent){
+      countryEmpty.textContent = lang === 'fr' ? 'Aucun pays trouvé' : 'No country found';
+    }
+
+    try{localStorage.setItem(stateKey,lang);}catch(e){}
+  };
     document.querySelectorAll('[data-lang]').forEach(btn=>btn.classList.toggle('active',btn.dataset.lang===lang));
     document.documentElement.lang=lang;
     try{localStorage.setItem(stateKey,lang);}catch(e){}
@@ -1778,7 +1818,7 @@
     });
     if(!optionsBox.children.length){
       const empty=document.createElement('div'); empty.style.padding='14px'; empty.style.opacity='.6';
-      empty.textContent='No country found'; optionsBox.appendChild(empty);
+      empty.textContent=(document.documentElement.lang||'en')==='fr' ? 'Aucun pays trouvé' : 'No country found'; optionsBox.appendChild(empty);
     }
   }
   function open(){menu.classList.add('open');trigger.setAttribute('aria-expanded','true');search.value='';render();setTimeout(()=>search.focus(),0);}

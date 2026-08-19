@@ -1319,7 +1319,7 @@
   <p class="contact-copy-note" id="copyNote" aria-live="polite"></p>
 </div>
 </div>
-<form class="contact-form reveal reveal-delay-1" id="enquiryForm">
+<form class="contact-form reveal reveal-delay-1" id="enquiryForm" action="https://formsubmit.co/ajax/info@redislandinvestments.com" method="POST">
 <div class="form-row">
 <label><span data-en="First Name" data-fr="Prénom">First Name</span><input name="firstName" type="text" autocomplete="given-name" required></label>
 <label><span data-en="Last Name" data-fr="Nom">Last Name</span><input name="lastName" type="text" autocomplete="family-name" required></label>
@@ -1865,6 +1865,43 @@
   select.addEventListener('change',setIntl);
   phone.addEventListener('input',setIntl);
 })();
+</script>
+  <script>
+document.getElementById("enquiryForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const form = this;
+    const button = form.querySelector('button[type="submit"]');
+    const originalText = button.textContent;
+
+    button.textContent = "Sending...";
+    button.disabled = true;
+
+    try {
+        const response = await fetch(form.action, {
+            method: "POST",
+            headers: {
+                "Accept": "application/json"
+            },
+            body: new FormData(form)
+        });
+
+        if (response.ok) {
+            button.textContent = "Enquiry Sent";
+            form.reset();
+
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.disabled = false;
+            }, 3000);
+        } else {
+            throw new Error("Submission failed");
+        }
+    } catch (error) {
+        button.textContent = "Please Try Again";
+        button.disabled = false;
+    }
+});
 </script>
 
 </body>

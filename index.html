@@ -665,6 +665,148 @@
   }
 }
 </style>
+<style id="estate-google-map-layout">
+.estate-google-map{
+  width:100%;
+  height:520px;
+  background:#e9eef1;
+  border:1px solid rgba(180,147,62,.35);
+  box-sizing:border-box;
+  overflow:hidden;
+  position:relative;
+}
+.estate-google-map .location-map,
+.estate-google-map iframe{
+  width:100%;
+  height:100%;
+}
+.estate-map-link{
+  position:absolute;
+  right:18px;
+  bottom:18px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  padding:0 16px;
+  background:#f7f4ed;
+  color:#20211d;
+  text-decoration:none;
+  border:1px solid rgba(25,25,25,.18);
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.estate-map-link:hover{border-color:var(--gold);color:var(--gold);}
+.destination-intro{
+  max-width:900px;
+  margin:0 auto;
+}
+@media(max-width:900px){
+  .estate-google-map{height:420px;}
+}
+@media(max-width:760px){
+  .estate-google-map{height:360px;}
+  .estate-map-link{right:10px;bottom:10px;min-height:38px;font-size:9px;}
+}
+</style>
+
+<style id="phone-country-searchable">
+.phone-field-wrap{
+  display:flex;
+  width:100%;
+  position:relative;
+  min-width:0;
+}
+.phone-field-wrap > #phoneCountry{
+  display:none !important;
+}
+.phone-country-picker{
+  position:relative;
+  flex:0 0 190px;
+  min-width:0;
+}
+.phone-country-trigger{
+  width:100%;
+  height:56px;
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  padding:0 14px;
+  border:1px solid rgba(32,33,29,.22);
+  border-right:0;
+  border-radius:0;
+  background:transparent;
+  color:var(--text,#20211d);
+  font:inherit;
+  font-size:14px;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.phone-country-trigger .country-label{
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.phone-country-trigger .chevron{font-size:16px;opacity:.7;flex:0 0 auto;}
+.phone-country-menu{
+  display:none;
+  position:absolute;
+  z-index:1000;
+  left:0;
+  top:calc(100% + 5px);
+  width:320px;
+  max-width:min(320px, 80vw);
+  max-height:340px;
+  overflow:hidden;
+  background:#f7f4ed;
+  border:1px solid rgba(32,33,29,.18);
+  box-shadow:0 14px 40px rgba(0,0,0,.15);
+}
+.phone-country-menu.open{display:block;}
+.phone-country-search{
+  width:100%;
+  height:46px;
+  box-sizing:border-box;
+  border:0;
+  border-bottom:1px solid rgba(32,33,29,.14);
+  background:#fff;
+  padding:0 14px;
+  outline:none;
+  font:inherit;
+  font-size:14px;
+}
+.phone-country-options{
+  max-height:290px;
+  overflow-y:auto;
+}
+.phone-country-option{
+  width:100%;
+  border:0;
+  background:transparent;
+  text-align:left;
+  padding:10px 14px;
+  font:inherit;
+  font-size:14px;
+  cursor:pointer;
+  color:var(--text,#20211d);
+}
+.phone-country-option:hover,
+.phone-country-option.active{background:rgba(180,147,62,.12);}
+.phone-field-wrap > input[type="tel"]{
+  flex:1 1 auto;
+  min-width:0;
+  width:auto !important;
+  border-radius:0 !important;
+}
+@media(max-width:700px){
+  .phone-country-picker{flex:0 0 125px;}
+  .phone-country-trigger{padding:0 9px;font-size:13px;}
+  .phone-country-menu{width:290px;max-width:90vw;}
+}
+</style>
+
 </head>
 <body>
 <!-- ============ MONOGRAM SVG (reused) ============ -->
@@ -741,10 +883,21 @@
 <!-- ============ THE ESTATE ============ -->
 <section id="estate">
 <div class="split">
-<div class="img-col reveal estate-location-visual">
-<img loading="eager" decoding="async"
-     alt="Location plan of Nosy Be showing Infinity Heights in Baie de Befotaka, Ampasindava"
-     src="img-24.png"/>
+<div class="estate-google-map reveal">
+  <div class="location-map">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4105.894584086483!2d48.25770588120861!3d-13.262444553767784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2213bb4c61b5083f%3A0xdfbc77c88af2326d!2sInfinity%20Heights%20Nosy%20be%20Madagascar!5e1!3m2!1sfr!2smg!4v1787120158887!5m2!1sfr!2smg"
+      width="100%"
+      height="520"
+      style="border:0;display:block;"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      title="Infinity Heights Nosy Be Madagascar on Google Maps"></iframe>
+  </div>
+  <a class="estate-map-link" href="https://maps.app.goo.gl/XiTho5u1AzdpgmKj7" target="_blank" rel="noopener">
+    Open in Google Maps
+  </a>
 </div>
 <div class="text-col reveal reveal-delay-1">
 <span class="eyebrow">The Estate</span>
@@ -894,7 +1047,7 @@
 <!-- ============ NOSY BE / DESTINATION ============ -->
 <section class="dark section-pad" id="destination">
 <div class="wrap">
-<div class="split" style="grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
+<div class="destination-intro">
 <div class="reveal">
 <span class="eyebrow on-dark">Nosy Be</span>
 <h2 class="section-title">Madagascar's Tropical<br/><span class="script">Island Escape</span></h2>
@@ -903,22 +1056,6 @@
 <div><b>30 min</b>From the City</div>
 <div><b>20 min</b>Andilana Beach</div>
 <div><b>25 min</b>Fascene Int'l Airport</div>
-</div>
-</div>
-<div class="reveal reveal-delay-1">
-<div class="map-caption"><span>Infinity Heights · Baie de Befotaka · Ampasindava</span><a class="map-cta" href="https://maps.app.goo.gl/ry6HBvq96VBHJZj76" target="_blank" rel="noopener"><div class="location-map" style="width:100%;border-radius:18px;overflow:hidden;margin-top:28px;">
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4105.894584086483!2d48.25770588120861!3d-13.262444553767784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2213bb4c61b5083f%3A0xdfbc77c88af2326d!2sInfinity%20Heights%20Nosy%20be%20Madagascar!5e1!3m2!1sfr!2smg!4v1787120158887!5m2!1sfr!2smg"
-    width="100%"
-    height="460"
-    style="border:0;display:block;"
-    allowfullscreen
-    loading="lazy"
-    referrerpolicy="strict-origin-when-cross-origin"
-    title="Infinity Heights Nosy Be Madagascar on Google Maps"></iframe>
-</div>
-Open in Google Maps</a></div>
-<a href="https://maps.app.goo.gl/ry6HBvq96VBHJZj76" target="_blank" rel="noopener" class="map-link" aria-label="Open Infinity Heights location in Google Maps"><img loading="lazy" decoding="async" alt="Map of Nosy Be showing Infinity Heights in Baie de Befotaka, Ampasindava" src="img-24.png"/></a>
 </div>
 </div>
 <div class="dest-grid">
@@ -1035,8 +1172,8 @@ Open in Google Maps</a></div>
 </div>
 <div class="form-row">
 <label><span data-en="Email" data-fr="E-mail">Email</span><input name="email" type="email" autocomplete="email" required></label>
-<label><span data-en="Phone Number" data-fr="Numéro de téléphone">Phone Number</span><div class="phone-field-wrap" style="display:flex;width:100%;">
-<select id="phoneCountry" aria-label="Country calling code" style="flex:0 0 185px;border:1px solid #ccc;border-right:0;border-radius:10px 0 0 10px;padding:0 8px;background:#fff;">
+<label><span data-en="Phone Number" data-fr="Numéro de téléphone">Phone Number</span><div class="phone-field-wrap">
+<select id="phoneCountry" aria-label="Country calling code">
 <option value="+93">🇦🇫 +93 — Afghanistan</option>
 <option value="+355">🇦🇱 +355 — Albania</option>
 <option value="+213">🇩🇿 +213 — Algeria</option>
@@ -1476,18 +1613,105 @@ Open in Google Maps</a></div>
   });
 })();
 </script>
-<script id="infinity-phone-country">
+
+<script id="infinity-phone-country-search">
 (function(){
-  const country=document.getElementById('phoneCountry');
-  const phone=document.querySelector('.phone-field-wrap input[type="tel"]');
-  if(!country||!phone) return;
+  const select=document.getElementById('phoneCountry');
+  const wrap=document.querySelector('.phone-field-wrap');
+  const phone=wrap && wrap.querySelector('input[type="tel"]');
+  if(!select || !wrap || !phone) return;
+
+  const picker=document.createElement('div');
+  picker.className='phone-country-picker';
+
+  const trigger=document.createElement('button');
+  trigger.type='button';
+  trigger.className='phone-country-trigger';
+  trigger.setAttribute('aria-haspopup','listbox');
+  trigger.setAttribute('aria-expanded','false');
+
+  const label=document.createElement('span');
+  label.className='country-label';
+  const chev=document.createElement('span');
+  chev.className='chevron';
+  chev.textContent='⌄';
+  trigger.append(label,chev);
+
+  const menu=document.createElement('div');
+  menu.className='phone-country-menu';
+  menu.innerHTML='<input class="phone-country-search" type="search" placeholder="Search country…" autocomplete="off" aria-label="Search country"><div class="phone-country-options" role="listbox"></div>';
+  const search=menu.querySelector('.phone-country-search');
+  const optionsBox=menu.querySelector('.phone-country-options');
+
+  const options=[...select.options].map((o,i)=>({
+    value:o.value, text:o.textContent.trim(), index:i
+  }));
+
+  function render(filter=''){
+    const q=filter.trim().toLowerCase();
+    optionsBox.innerHTML='';
+    options.filter(o=>!q || o.text.toLowerCase().includes(q) || o.value.includes(q)).forEach(o=>{
+      const b=document.createElement('button');
+      b.type='button';
+      b.className='phone-country-option';
+      b.textContent=o.text;
+      b.setAttribute('role','option');
+      b.addEventListener('click',()=>{
+        select.selectedIndex=o.index;
+        select.dispatchEvent(new Event('change',{bubbles:true}));
+        updateLabel();
+        close();
+        phone.focus();
+      });
+      optionsBox.appendChild(b);
+    });
+    if(!optionsBox.children.length){
+      const empty=document.createElement('div');
+      empty.style.padding='14px';
+      empty.style.opacity='.6';
+      empty.textContent='No country found';
+      optionsBox.appendChild(empty);
+    }
+  }
+
+  function updateLabel(){
+    const o=select.options[select.selectedIndex];
+    label.textContent=o ? o.textContent.trim() : 'Select country';
+  }
+  function open(){
+    menu.classList.add('open');
+    trigger.setAttribute('aria-expanded','true');
+    search.value='';
+    render();
+    setTimeout(()=>search.focus(),0);
+  }
+  function close(){
+    menu.classList.remove('open');
+    trigger.setAttribute('aria-expanded','false');
+  }
+
+  trigger.addEventListener('click',e=>{
+    e.stopPropagation();
+    menu.classList.contains('open') ? close() : open();
+  });
+  search.addEventListener('input',()=>render(search.value));
+  search.addEventListener('keydown',e=>{if(e.key==='Escape') close();});
+  document.addEventListener('click',e=>{if(!picker.contains(e.target)) close();});
+
+  updateLabel();
+  render();
+  picker.append(trigger,menu);
+  wrap.insertBefore(picker,select);
+
+  // Keep the international value updated.
   function setIntl(){
     const digits=phone.value.replace(/\D/g,'');
-    phone.dataset.international=digits ? country.value+digits : '';
+    phone.dataset.international=digits ? select.value+digits : '';
   }
-  country.addEventListener('change',setIntl);
+  select.addEventListener('change',setIntl);
   phone.addEventListener('input',setIntl);
 })();
 </script>
+
 </body>
 </html>

@@ -713,19 +713,15 @@
 
 <style id="phone-country-searchable">
 .phone-field-wrap{
-  display:flex;
+  display:grid;
+  grid-template-columns:132px minmax(0,1fr);
   width:100%;
   position:relative;
   min-width:0;
+  align-items:stretch;
 }
-.phone-field-wrap > #phoneCountry{
-  display:none !important;
-}
-.phone-country-picker{
-  position:relative;
-  flex:0 0 190px;
-  min-width:0;
-}
+.phone-field-wrap > #phoneCountry{display:none !important;}
+.phone-country-picker{position:relative;min-width:0;}
 .phone-country-trigger{
   width:100%;
   height:56px;
@@ -733,8 +729,8 @@
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:8px;
-  padding:0 14px;
+  gap:7px;
+  padding:0 11px;
   border:1px solid rgba(32,33,29,.22);
   border-right:0;
   border-radius:0;
@@ -748,40 +744,41 @@
 .phone-country-trigger .country-label{
   overflow:hidden;
   text-overflow:ellipsis;
+  white-space:nowrap;
 }
-.phone-country-trigger .chevron{font-size:16px;opacity:.7;flex:0 0 auto;}
+.phone-country-trigger .chevron{font-size:15px;opacity:.7;flex:0 0 auto;}
 .phone-country-menu{
   display:none;
   position:absolute;
-  z-index:1000;
+  z-index:10000;
   left:0;
-  top:calc(100% + 5px);
-  width:320px;
-  max-width:min(320px, 80vw);
-  max-height:340px;
+  top:calc(100% + 6px);
+  width:340px;
+  max-width:min(340px,88vw);
+  max-height:360px;
   overflow:hidden;
   background:#f7f4ed;
   border:1px solid rgba(32,33,29,.18);
-  box-shadow:0 14px 40px rgba(0,0,0,.15);
+  box-shadow:0 18px 45px rgba(0,0,0,.18);
 }
 .phone-country-menu.open{display:block;}
 .phone-country-search{
-  width:100%;
-  height:46px;
+  display:block;
+  width:100% !important;
+  height:48px !important;
   box-sizing:border-box;
-  border:0;
-  border-bottom:1px solid rgba(32,33,29,.14);
-  background:#fff;
-  padding:0 14px;
-  outline:none;
+  border:0 !important;
+  border-bottom:1px solid rgba(32,33,29,.14) !important;
+  border-radius:0 !important;
+  background:#fff !important;
+  padding:0 14px !important;
+  outline:none !important;
   font:inherit;
-  font-size:14px;
+  font-size:14px !important;
 }
-.phone-country-options{
-  max-height:290px;
-  overflow-y:auto;
-}
+.phone-country-options{max-height:310px;overflow-y:auto;}
 .phone-country-option{
+  display:block;
   width:100%;
   border:0;
   background:transparent;
@@ -795,15 +792,16 @@
 .phone-country-option:hover,
 .phone-country-option.active{background:rgba(180,147,62,.12);}
 .phone-field-wrap > input[type="tel"]{
-  flex:1 1 auto;
+  display:block;
   min-width:0;
-  width:auto !important;
+  width:100% !important;
+  box-sizing:border-box;
   border-radius:0 !important;
 }
 @media(max-width:700px){
-  .phone-country-picker{flex:0 0 125px;}
-  .phone-country-trigger{padding:0 9px;font-size:13px;}
-  .phone-country-menu{width:290px;max-width:90vw;}
+  .phone-field-wrap{grid-template-columns:112px minmax(0,1fr);}
+  .phone-country-trigger{padding:0 8px;font-size:13px;}
+  .phone-country-menu{width:300px;max-width:88vw;}
 }
 </style>
 
@@ -824,7 +822,7 @@
 <!-- ============ HEADER ============ -->
 <header id="siteHeader">
 <div class="brand">
-<img decoding="async" alt="Infinity Heights" class="official-logo" src="img-01.png"/>
+
 </div>
 <nav class="primary-nav">
 <a href="#estate">The Estate</a>
@@ -883,12 +881,12 @@
 <!-- ============ THE ESTATE ============ -->
 <section id="estate">
 <div class="split">
-<div class="estate-google-map reveal">
+<div class="estate-google-map reveal" data-google-map="infinity-heights">
   <div class="location-map">
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4105.894584086483!2d48.25770588120861!3d-13.262444553767784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2213bb4c61b5083f%3A0xdfbc77c88af2326d!2sInfinity%20Heights%20Nosy%20be%20Madagascar!5e1!3m2!1sfr!2smg!4v1787120158887!5m2!1sfr!2smg"
       width="100%"
-      height="520"
+      height="100%"
       style="border:0;display:block;"
       allowfullscreen
       loading="lazy"
@@ -1388,7 +1386,7 @@
 <option value="+967">🇾🇪 +967 — Yemen</option>
 <option value="+260">🇿🇲 +260 — Zambia</option>
 <option value="+263">🇿🇼 +263 — Zimbabwe</option>
-</select><input name="phone" type="tel" autocomplete="tel" required></div></label>
+</select><input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Phone number" data-en-placeholder="Phone number" data-fr-placeholder="Numéro de téléphone" required></div></label>
 </div>
 <label><span data-en="Your Message" data-fr="Votre message">Your Message</span><textarea name="message" rows="6" placeholder="Tell us how we can assist you…" required></textarea></label>
 <button class="btn filled form-submit" data-en="Send Enquiry" data-fr="Envoyer la demande" type="submit">Send Enquiry</button>
@@ -1416,7 +1414,7 @@
 <div class="footer-grid">
 <div>
 <div class="footer-brand">
-<img decoding="async" alt="Infinity Heights" class="official-footer-logo" src="img-01.png"/>
+
 </div>
 <p class="footer-tag">Where luxury meets authenticity — a private retreat between hillside and ocean in the Baie d'Ampasindava, Nosy Be.</p>
 </div>
@@ -1608,7 +1606,7 @@
   form.addEventListener('submit',function(e){
     e.preventDefault(); var d=new FormData(form);
     var subject=encodeURIComponent('Infinity Heights — Private Enquiry');
-    var body=encodeURIComponent('First Name: '+d.get('firstName')+'\nLast Name: '+d.get('lastName')+'\nEmail: '+d.get('email')+'\nPhone: '+d.get('phone')+'\n\nMessage:\n'+d.get('message'));
+    var country=document.getElementById('phoneCountry'); var phone=d.get('phone')||''; var fullPhone=(country?country.value:'')+' '+phone; var body=encodeURIComponent('First Name: '+d.get('firstName')+'\nLast Name: '+d.get('lastName')+'\nEmail: '+d.get('email')+'\nPhone: '+fullPhone+'\n\nMessage:\n'+d.get('message'));
     window.location.href='mailto:info@redislandinvestments.com?subject='+subject+'&body='+body;
   });
 })();
@@ -1676,7 +1674,10 @@
 
   function updateLabel(){
     const o=select.options[select.selectedIndex];
-    label.textContent=o ? o.textContent.trim() : 'Select country';
+    if(!o){ label.textContent='Code'; return; }
+    const text=o.textContent.trim();
+    const match=text.match(/(\p{Regional_Indicator}{2})\s*(\+\d+(?:-\d+)?)/u);
+    label.textContent=match ? (match[1]+' '+match[2]) : o.value;
   }
   function open(){
     menu.classList.add('open');

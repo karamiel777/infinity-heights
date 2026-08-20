@@ -1951,7 +1951,8 @@ document.addEventListener("DOMContentLoaded", function () {
       if (digits.length < 4 || digits.length > 12) {
         throw new Error("Please enter a valid phone number");
       }
-      payload.phone = country.value + " " + digits;
+      fd.set("phone", country.value + " " + digits);
+      payload.phone = fd.get("phone");
     }
 
     try {

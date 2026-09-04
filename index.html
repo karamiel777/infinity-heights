@@ -608,6 +608,16 @@
 .phone-country-option{width:100%;border:0;background:transparent;text-align:left;padding:9px 12px;font:inherit;font-size:14px;cursor:pointer;color:var(--text);display:block;}
 .phone-country-option:hover,.phone-country-option.active{background:rgba(180,147,62,.12);}
 @media(max-width:800px){.phone-country-menu{width:260px;}}
+.form-status{font-size:11px;line-height:1.5;margin:0;display:none;}
+.form-status.show{display:block;}
+.form-status.is-error{color:#b3261e;}
+.form-status.is-success{color:#3a6b35;}
+.country-search-wrap{position:relative;}
+.country-suggest-menu{display:none;position:absolute;z-index:1000;left:0;top:100%;width:100%;max-height:260px;overflow-y:auto;background:#fff;border:1px solid rgba(25,25,25,.15);box-shadow:0 14px 40px rgba(0,0,0,.15);}
+.country-suggest-menu.open{display:block;}
+.country-suggest-option{width:100%;border:0;background:transparent;text-align:left;padding:9px 12px;font:inherit;font-size:14px;cursor:pointer;color:var(--text);display:block;}
+.country-suggest-option:hover{background:rgba(180,147,62,.12);}
+.country-suggest-empty{padding:12px;font-size:13px;opacity:.6;}
 </style>
 </head>
 <body>
@@ -987,13 +997,14 @@ allowfullscreen></iframe>
 </div>
 </div>
 <div class="form-row">
-<label class="country-search-wrap"><span data-en="Country of Residence" data-fr="Pays de résidence">Country of Residence</span><input name="countryResidence" list="countryList" autocomplete="country-name" placeholder="Select or type your country" data-en-placeholder="Select or type your country" data-fr-placeholder="Sélectionnez ou saisissez votre pays" required><datalist id="countryList"><option value="Afghanistan"></option><option value="Albania"></option><option value="Algeria"></option><option value="American Samoa"></option><option value="Andorra"></option><option value="Angola"></option><option value="Anguilla"></option><option value="Antarctica"></option><option value="Antigua and Barbuda"></option><option value="Argentina"></option><option value="Armenia"></option><option value="Aruba"></option><option value="Australia"></option><option value="Austria"></option><option value="Azerbaijan"></option><option value="Bahamas"></option><option value="Bahrain"></option><option value="Bangladesh"></option><option value="Barbados"></option><option value="Belarus"></option><option value="Belgium"></option><option value="Belize"></option><option value="Benin"></option><option value="Bermuda"></option><option value="Bhutan"></option><option value="Bolivia, Plurinational State of"></option><option value="Bonaire, Sint Eustatius and Saba"></option><option value="Bosnia and Herzegovina"></option><option value="Botswana"></option><option value="Bouvet Island"></option><option value="Brazil"></option><option value="British Indian Ocean Territory"></option><option value="Brunei Darussalam"></option><option value="Bulgaria"></option><option value="Burkina Faso"></option><option value="Burundi"></option><option value="Cabo Verde"></option><option value="Cambodia"></option><option value="Cameroon"></option><option value="Canada"></option><option value="Cayman Islands"></option><option value="Central African Republic"></option><option value="Chad"></option><option value="Chile"></option><option value="China"></option><option value="Christmas Island"></option><option value="Cocos (Keeling) Islands"></option><option value="Colombia"></option><option value="Comoros"></option><option value="Congo"></option><option value="Congo, The Democratic Republic of the"></option><option value="Cook Islands"></option><option value="Costa Rica"></option><option value="Croatia"></option><option value="Cuba"></option><option value="Curaçao"></option><option value="Cyprus"></option><option value="Czechia"></option><option value="Côte d&#x27;Ivoire"></option><option value="Denmark"></option><option value="Djibouti"></option><option value="Dominica"></option><option value="Dominican Republic"></option><option value="Ecuador"></option><option value="Egypt"></option><option value="El Salvador"></option><option value="Equatorial Guinea"></option><option value="Eritrea"></option><option value="Estonia"></option><option value="Eswatini"></option><option value="Ethiopia"></option><option value="Falkland Islands (Malvinas)"></option><option value="Faroe Islands"></option><option value="Fiji"></option><option value="Finland"></option><option value="France"></option><option value="French Guiana"></option><option value="French Polynesia"></option><option value="French Southern Territories"></option><option value="Gabon"></option><option value="Gambia"></option><option value="Georgia"></option><option value="Germany"></option><option value="Ghana"></option><option value="Gibraltar"></option><option value="Greece"></option><option value="Greenland"></option><option value="Grenada"></option><option value="Guadeloupe"></option><option value="Guam"></option><option value="Guatemala"></option><option value="Guernsey"></option><option value="Guinea"></option><option value="Guinea-Bissau"></option><option value="Guyana"></option><option value="Haiti"></option><option value="Heard Island and McDonald Islands"></option><option value="Holy See (Vatican City State)"></option><option value="Honduras"></option><option value="Hong Kong"></option><option value="Hungary"></option><option value="Iceland"></option><option value="India"></option><option value="Indonesia"></option><option value="Iran, Islamic Republic of"></option><option value="Iraq"></option><option value="Ireland"></option><option value="Isle of Man"></option><option value="Israel"></option><option value="Italy"></option><option value="Jamaica"></option><option value="Japan"></option><option value="Jersey"></option><option value="Jordan"></option><option value="Kazakhstan"></option><option value="Kenya"></option><option value="Kiribati"></option><option value="Korea, Democratic People&#x27;s Republic of"></option><option value="Korea, Republic of"></option><option value="Kosovo"></option><option value="Kuwait"></option><option value="Kyrgyzstan"></option><option value="Lao People&#x27;s Democratic Republic"></option><option value="Latvia"></option><option value="Lebanon"></option><option value="Lesotho"></option><option value="Liberia"></option><option value="Libya"></option><option value="Liechtenstein"></option><option value="Lithuania"></option><option value="Luxembourg"></option><option value="Macao"></option><option value="Madagascar"></option><option value="Malawi"></option><option value="Malaysia"></option><option value="Maldives"></option><option value="Mali"></option><option value="Malta"></option><option value="Marshall Islands"></option><option value="Martinique"></option><option value="Mauritania"></option><option value="Mauritius"></option><option value="Mayotte"></option><option value="Mexico"></option><option value="Micronesia, Federated States of"></option><option value="Moldova, Republic of"></option><option value="Monaco"></option><option value="Mongolia"></option><option value="Montenegro"></option><option value="Montserrat"></option><option value="Morocco"></option><option value="Mozambique"></option><option value="Myanmar"></option><option value="Namibia"></option><option value="Nauru"></option><option value="Nepal"></option><option value="Netherlands"></option><option value="New Caledonia"></option><option value="New Zealand"></option><option value="Nicaragua"></option><option value="Niger"></option><option value="Nigeria"></option><option value="Niue"></option><option value="Norfolk Island"></option><option value="North Macedonia"></option><option value="Northern Mariana Islands"></option><option value="Norway"></option><option value="Oman"></option><option value="Pakistan"></option><option value="Palau"></option><option value="Palestine, State of"></option><option value="Panama"></option><option value="Papua New Guinea"></option><option value="Paraguay"></option><option value="Peru"></option><option value="Philippines"></option><option value="Pitcairn"></option><option value="Poland"></option><option value="Portugal"></option><option value="Puerto Rico"></option><option value="Qatar"></option><option value="Romania"></option><option value="Russian Federation"></option><option value="Rwanda"></option><option value="Réunion"></option><option value="Saint Barthélemy"></option><option value="Saint Helena, Ascension and Tristan da Cunha"></option><option value="Saint Kitts and Nevis"></option><option value="Saint Lucia"></option><option value="Saint Martin (French part)"></option><option value="Saint Pierre and Miquelon"></option><option value="Saint Vincent and the Grenadines"></option><option value="Samoa"></option><option value="San Marino"></option><option value="Sao Tome and Principe"></option><option value="Saudi Arabia"></option><option value="Senegal"></option><option value="Serbia"></option><option value="Seychelles"></option><option value="Sierra Leone"></option><option value="Singapore"></option><option value="Sint Maarten (Dutch part)"></option><option value="Slovakia"></option><option value="Slovenia"></option><option value="Solomon Islands"></option><option value="Somalia"></option><option value="South Africa"></option><option value="South Georgia and the South Sandwich Islands"></option><option value="South Sudan"></option><option value="Spain"></option><option value="Sri Lanka"></option><option value="Sudan"></option><option value="Suriname"></option><option value="Svalbard and Jan Mayen"></option><option value="Sweden"></option><option value="Switzerland"></option><option value="Syrian Arab Republic"></option><option value="Taiwan, Province of China"></option><option value="Tajikistan"></option><option value="Tanzania, United Republic of"></option><option value="Thailand"></option><option value="Timor-Leste"></option><option value="Togo"></option><option value="Tokelau"></option><option value="Tonga"></option><option value="Trinidad and Tobago"></option><option value="Tunisia"></option><option value="Turkmenistan"></option><option value="Turks and Caicos Islands"></option><option value="Tuvalu"></option><option value="Türkiye"></option><option value="Uganda"></option><option value="Ukraine"></option><option value="United Arab Emirates"></option><option value="United Kingdom"></option><option value="United States"></option><option value="United States Minor Outlying Islands"></option><option value="Uruguay"></option><option value="Uzbekistan"></option><option value="Vanuatu"></option><option value="Venezuela, Bolivarian Republic of"></option><option value="Viet Nam"></option><option value="Virgin Islands, British"></option><option value="Virgin Islands, U.S."></option><option value="Wallis and Futuna"></option><option value="Western Sahara"></option><option value="Yemen"></option><option value="Zambia"></option><option value="Zimbabwe"></option><option value="Åland Islands"></option></datalist></label>
+<label class="country-search-wrap"><span data-en="Country of Residence" data-fr="Pays de résidence">Country of Residence</span><input name="countryResidence" autocomplete="off" placeholder="Select or type your country" data-en-placeholder="Select or type your country" data-fr-placeholder="Sélectionnez ou saisissez votre pays" required><datalist id="countryList"><option value="Afghanistan"></option><option value="Albania"></option><option value="Algeria"></option><option value="American Samoa"></option><option value="Andorra"></option><option value="Angola"></option><option value="Anguilla"></option><option value="Antarctica"></option><option value="Antigua and Barbuda"></option><option value="Argentina"></option><option value="Armenia"></option><option value="Aruba"></option><option value="Australia"></option><option value="Austria"></option><option value="Azerbaijan"></option><option value="Bahamas"></option><option value="Bahrain"></option><option value="Bangladesh"></option><option value="Barbados"></option><option value="Belarus"></option><option value="Belgium"></option><option value="Belize"></option><option value="Benin"></option><option value="Bermuda"></option><option value="Bhutan"></option><option value="Bolivia, Plurinational State of"></option><option value="Bonaire, Sint Eustatius and Saba"></option><option value="Bosnia and Herzegovina"></option><option value="Botswana"></option><option value="Bouvet Island"></option><option value="Brazil"></option><option value="British Indian Ocean Territory"></option><option value="Brunei Darussalam"></option><option value="Bulgaria"></option><option value="Burkina Faso"></option><option value="Burundi"></option><option value="Cabo Verde"></option><option value="Cambodia"></option><option value="Cameroon"></option><option value="Canada"></option><option value="Cayman Islands"></option><option value="Central African Republic"></option><option value="Chad"></option><option value="Chile"></option><option value="China"></option><option value="Christmas Island"></option><option value="Cocos (Keeling) Islands"></option><option value="Colombia"></option><option value="Comoros"></option><option value="Congo"></option><option value="Congo, The Democratic Republic of the"></option><option value="Cook Islands"></option><option value="Costa Rica"></option><option value="Croatia"></option><option value="Cuba"></option><option value="Curaçao"></option><option value="Cyprus"></option><option value="Czechia"></option><option value="Côte d&#x27;Ivoire"></option><option value="Denmark"></option><option value="Djibouti"></option><option value="Dominica"></option><option value="Dominican Republic"></option><option value="Ecuador"></option><option value="Egypt"></option><option value="El Salvador"></option><option value="Equatorial Guinea"></option><option value="Eritrea"></option><option value="Estonia"></option><option value="Eswatini"></option><option value="Ethiopia"></option><option value="Falkland Islands (Malvinas)"></option><option value="Faroe Islands"></option><option value="Fiji"></option><option value="Finland"></option><option value="France"></option><option value="French Guiana"></option><option value="French Polynesia"></option><option value="French Southern Territories"></option><option value="Gabon"></option><option value="Gambia"></option><option value="Georgia"></option><option value="Germany"></option><option value="Ghana"></option><option value="Gibraltar"></option><option value="Greece"></option><option value="Greenland"></option><option value="Grenada"></option><option value="Guadeloupe"></option><option value="Guam"></option><option value="Guatemala"></option><option value="Guernsey"></option><option value="Guinea"></option><option value="Guinea-Bissau"></option><option value="Guyana"></option><option value="Haiti"></option><option value="Heard Island and McDonald Islands"></option><option value="Holy See (Vatican City State)"></option><option value="Honduras"></option><option value="Hong Kong"></option><option value="Hungary"></option><option value="Iceland"></option><option value="India"></option><option value="Indonesia"></option><option value="Iran, Islamic Republic of"></option><option value="Iraq"></option><option value="Ireland"></option><option value="Isle of Man"></option><option value="Israel"></option><option value="Italy"></option><option value="Jamaica"></option><option value="Japan"></option><option value="Jersey"></option><option value="Jordan"></option><option value="Kazakhstan"></option><option value="Kenya"></option><option value="Kiribati"></option><option value="Korea, Democratic People&#x27;s Republic of"></option><option value="Korea, Republic of"></option><option value="Kosovo"></option><option value="Kuwait"></option><option value="Kyrgyzstan"></option><option value="Lao People&#x27;s Democratic Republic"></option><option value="Latvia"></option><option value="Lebanon"></option><option value="Lesotho"></option><option value="Liberia"></option><option value="Libya"></option><option value="Liechtenstein"></option><option value="Lithuania"></option><option value="Luxembourg"></option><option value="Macao"></option><option value="Madagascar"></option><option value="Malawi"></option><option value="Malaysia"></option><option value="Maldives"></option><option value="Mali"></option><option value="Malta"></option><option value="Marshall Islands"></option><option value="Martinique"></option><option value="Mauritania"></option><option value="Mauritius"></option><option value="Mayotte"></option><option value="Mexico"></option><option value="Micronesia, Federated States of"></option><option value="Moldova, Republic of"></option><option value="Monaco"></option><option value="Mongolia"></option><option value="Montenegro"></option><option value="Montserrat"></option><option value="Morocco"></option><option value="Mozambique"></option><option value="Myanmar"></option><option value="Namibia"></option><option value="Nauru"></option><option value="Nepal"></option><option value="Netherlands"></option><option value="New Caledonia"></option><option value="New Zealand"></option><option value="Nicaragua"></option><option value="Niger"></option><option value="Nigeria"></option><option value="Niue"></option><option value="Norfolk Island"></option><option value="North Macedonia"></option><option value="Northern Mariana Islands"></option><option value="Norway"></option><option value="Oman"></option><option value="Pakistan"></option><option value="Palau"></option><option value="Palestine, State of"></option><option value="Panama"></option><option value="Papua New Guinea"></option><option value="Paraguay"></option><option value="Peru"></option><option value="Philippines"></option><option value="Pitcairn"></option><option value="Poland"></option><option value="Portugal"></option><option value="Puerto Rico"></option><option value="Qatar"></option><option value="Romania"></option><option value="Russian Federation"></option><option value="Rwanda"></option><option value="Réunion"></option><option value="Saint Barthélemy"></option><option value="Saint Helena, Ascension and Tristan da Cunha"></option><option value="Saint Kitts and Nevis"></option><option value="Saint Lucia"></option><option value="Saint Martin (French part)"></option><option value="Saint Pierre and Miquelon"></option><option value="Saint Vincent and the Grenadines"></option><option value="Samoa"></option><option value="San Marino"></option><option value="Sao Tome and Principe"></option><option value="Saudi Arabia"></option><option value="Senegal"></option><option value="Serbia"></option><option value="Seychelles"></option><option value="Sierra Leone"></option><option value="Singapore"></option><option value="Sint Maarten (Dutch part)"></option><option value="Slovakia"></option><option value="Slovenia"></option><option value="Solomon Islands"></option><option value="Somalia"></option><option value="South Africa"></option><option value="South Georgia and the South Sandwich Islands"></option><option value="South Sudan"></option><option value="Spain"></option><option value="Sri Lanka"></option><option value="Sudan"></option><option value="Suriname"></option><option value="Svalbard and Jan Mayen"></option><option value="Sweden"></option><option value="Switzerland"></option><option value="Syrian Arab Republic"></option><option value="Taiwan, Province of China"></option><option value="Tajikistan"></option><option value="Tanzania, United Republic of"></option><option value="Thailand"></option><option value="Timor-Leste"></option><option value="Togo"></option><option value="Tokelau"></option><option value="Tonga"></option><option value="Trinidad and Tobago"></option><option value="Tunisia"></option><option value="Turkmenistan"></option><option value="Turks and Caicos Islands"></option><option value="Tuvalu"></option><option value="Türkiye"></option><option value="Uganda"></option><option value="Ukraine"></option><option value="United Arab Emirates"></option><option value="United Kingdom"></option><option value="United States"></option><option value="United States Minor Outlying Islands"></option><option value="Uruguay"></option><option value="Uzbekistan"></option><option value="Vanuatu"></option><option value="Venezuela, Bolivarian Republic of"></option><option value="Viet Nam"></option><option value="Virgin Islands, British"></option><option value="Virgin Islands, U.S."></option><option value="Wallis and Futuna"></option><option value="Western Sahara"></option><option value="Yemen"></option><option value="Zambia"></option><option value="Zimbabwe"></option><option value="Åland Islands"></option></datalist></label>
 <label><span data-en="How did you hear about Infinity Heights?" data-fr="Comment avez-vous entendu parler d’Infinity Heights ?">How did you hear about Infinity Heights?</span><select name="leadSource" required><option value="" disabled selected data-en="Select an option" data-fr="Sélectionnez une option">Select an option</option><option value="Website / Google" data-en="Website / Google" data-fr="Site internet / Google">Website / Google</option><option value="Referral / Word of mouth" data-en="Referral / Word of mouth" data-fr="Recommandation / bouche-à-oreille">Referral / Word of mouth</option><option value="Social media" data-en="Social media" data-fr="Réseaux sociaux">Social media</option><option value="Press / Media" data-en="Press / Media" data-fr="Presse / Médias">Press / Media</option><option value="Event / Networking" data-en="Event / Networking" data-fr="Événement / Réseau professionnel">Event / Networking</option><option value="Professional network" data-en="Professional network" data-fr="Réseau professionnel">Professional network</option><option value="Other" data-en="Other" data-fr="Autre">Other</option></select></label>
 </div>
 <label><span data-en="Your Message" data-fr="Votre message">Your Message</span><textarea name="message" rows="4" placeholder="Tell us how we can assist you…" data-en-placeholder="Tell us how we can assist you…" data-fr-placeholder="Dites-nous comment nous pouvons vous aider…" required></textarea></label>
 <label class="consent"><input name="confidentiality" type="checkbox" required><span data-en="I understand that the information shared through this enquiry will be treated confidentially and used only to respond to my request." data-fr="Je comprends que les informations transmises dans le cadre de cette demande seront traitées de manière confidentielle et utilisées uniquement pour répondre à ma demande.">I understand that the information shared through this enquiry will be treated confidentially and used only to respond to my request.</span></label>
 <button class="btn filled form-submit" data-en="Send Enquiry" data-fr="Envoyer la demande" type="submit">Send Enquiry</button>
 <p class="form-note" data-en="Your enquiry will open a secure email addressed directly to our team." data-fr="Votre demande ouvrira un e-mail sécurisé adressé directement à notre équipe.">Your enquiry will open a secure email addressed directly to our team.</p>
+<p class="form-status" id="enquiryStatus" role="status" aria-live="polite"></p>
 </form>
 </div>
 </div>
@@ -1165,12 +1176,19 @@ allowfullscreen></iframe>
 <script>
 (function(){
   var form=document.getElementById('enquiryForm'); if(!form) return;
+  var status=document.getElementById('enquiryStatus');
+  function setStatus(msg,type){
+    if(!status) return;
+    status.textContent=msg;
+    status.className='form-status show'+(type?' '+type:'');
+  }
   form.addEventListener('submit', async function(e){
     e.preventDefault();
 
     var button=form.querySelector('button[type="submit"]');
     var originalText=button ? button.textContent : '';
     var formData=new FormData(form);
+    var fr=(document.documentElement.lang||'en')==='fr';
 
     formData.append('_subject','Infinity Heights — Private Enquiry');
     formData.append('_captcha','false');
@@ -1178,8 +1196,9 @@ allowfullscreen></iframe>
 
     if(button){
       button.disabled=true;
-      button.textContent=(document.documentElement.lang||'en')==='fr' ? 'Envoi en cours…' : 'Sending…';
+      button.textContent=fr ? 'Envoi en cours…' : 'Sending…';
     }
+    setStatus('','');
 
     try {
       var response=await fetch('https://formsubmit.co/ajax/info@redislandinvestments.com',{
@@ -1188,10 +1207,16 @@ allowfullscreen></iframe>
         body:formData
       });
 
-      if(!response.ok) throw new Error('Submission failed');
+      var result=null;
+      try{ result=await response.json(); }catch(parseErr){ /* non-JSON response */ }
 
-      var fr=(document.documentElement.lang||'en')==='fr';
+      if(!response.ok || (result && result.success===false) || (result && result.success==='false')){
+        var reason=(result && (result.message||result.error)) ? (result.message||result.error) : ('HTTP '+response.status);
+        throw new Error(reason);
+      }
+
       if(button) button.textContent=fr ? 'Demande envoyée ✓' : 'Enquiry Sent ✓';
+      setStatus(fr ? 'Merci, votre demande a bien été envoyée.' : 'Thank you, your enquiry has been sent.','is-success');
       form.reset();
 
       setTimeout(function(){
@@ -1201,12 +1226,17 @@ allowfullscreen></iframe>
         }
       },3000);
     } catch(error){
-      console.error(error);
+      console.error('Enquiry form submission error:', error);
       if(button){
         button.disabled=false;
-        button.textContent=(document.documentElement.lang||'en')==='fr' ? 'Réessayer' : 'Please Try Again';
+        button.textContent=fr ? 'Réessayer' : 'Please Try Again';
       }
-      alert((document.documentElement.lang||'en')==='fr' ? 'Impossible d’envoyer la demande. Veuillez réessayer.' : 'We could not send your enquiry. Please try again.');
+      setStatus(
+        fr
+          ? 'Échec de l’envoi (' + error.message + '). Si vous venez d’activer le formulaire par email, réessayez — sinon vérifiez le dossier spam de la boîte destinataire.'
+          : 'Failed to send (' + error.message + '). If you just activated the form via email, try again — otherwise check the recipient inbox’s spam folder.',
+        'is-error'
+      );
     }
   });
 })();
@@ -1298,6 +1328,53 @@ allowfullscreen></iframe>
   render();
   picker.append(trigger,menu);
   wrap.appendChild(picker);
+})();
+</script>
+<script id="infinity-country-residence-search">
+(function(){
+  const input=document.querySelector('input[name="countryResidence"]');
+  const datalist=document.getElementById('countryList');
+  const wrap=input ? input.closest('.country-search-wrap') : null;
+  if(!input || !datalist || !wrap) return;
+
+  const menu=document.createElement('div');
+  menu.className='country-suggest-menu';
+  wrap.appendChild(menu);
+
+  const countries=[...datalist.options].map(o=>o.value);
+
+  function render(filter){
+    const q=(filter||'').trim().toLowerCase();
+    const matches=q ? countries.filter(c=>c.toLowerCase().includes(q)) : countries;
+    menu.innerHTML='';
+    if(!matches.length){
+      const empty=document.createElement('div');
+      empty.className='country-suggest-empty';
+      empty.textContent=(document.documentElement.lang||'en')==='fr' ? 'Aucune correspondance — vous pouvez saisir librement' : 'No match — you can still type your own';
+      menu.appendChild(empty);
+      return;
+    }
+    matches.slice(0,80).forEach(c=>{
+      const b=document.createElement('button');
+      b.type='button';
+      b.className='country-suggest-option';
+      b.textContent=c;
+      b.addEventListener('mousedown',function(e){
+        e.preventDefault();
+        input.value=c;
+        close();
+      });
+      menu.appendChild(b);
+    });
+  }
+  function open(){ menu.classList.add('open'); render(input.value); }
+  function close(){ menu.classList.remove('open'); }
+
+  input.addEventListener('focus', open);
+  input.addEventListener('click', open);
+  input.addEventListener('input', function(){ render(input.value); menu.classList.add('open'); });
+  input.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+  document.addEventListener('click', function(e){ if(!wrap.contains(e.target)) close(); });
 })();
 </script>
 </body>
